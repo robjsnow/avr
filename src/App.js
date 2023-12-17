@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import Board from './components/Board';
+import ModeSelection from './components/ModeSelection';
+import { React, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [gameMode, setGameMode] = useState(null);
+
+  const handleSelectMode = (mode) => {
+    setGameMode(mode);
+  };
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!gameMode ? (
+        <ModeSelection onSelectMode={handleSelectMode} />
+      ) : (
+        <Board mode={gameMode} />
+      )}
     </div>
   );
 }
